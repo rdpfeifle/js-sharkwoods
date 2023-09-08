@@ -70,13 +70,13 @@ const isLetterInWord = (letter, word) => {
 // It will be called when the file is run (because
 // we call the function on line 66)
 (function startGame() {
-  // For now, we'll hardcode the word that the user has to guess
-  // You can change this to choose a random word from WORDS once you
-  // finish this lab but we hard code it so we know what the word is
-  // and can tell if things look correct for this word
-  const word = "husband";
+  /**
+   * Randomly selects a word from the WORDS array by generating a random
+   * index between 0 and the array's length.
+   */
+  const randomWord = WORDS[Math.floor(Math.random() * WORDS.length)];
 
-  createDivsForChars(word);
+  createDivsForChars(randomWord);
 
   generateLetterButtons();
 
