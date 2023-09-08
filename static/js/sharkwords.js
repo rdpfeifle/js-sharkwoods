@@ -48,12 +48,12 @@ const generateLetterButtons = () => {
   }
 };
 
-// Set the `disabled` property of `buttonEl` to true.
-//
-// `buttonEl` is an `HTMLElement` object.
-//
+/**
+ * Set the `disabled` property of `buttonEl` to true.
+ * @param {*} buttonEl is an `HTMLElement` object
+ */
 const disableLetterButton = (buttonEl) => {
-  // Replace this with your code
+  buttonEl.disabled = true;
 };
 
 // This is a helper function we will use in the future
