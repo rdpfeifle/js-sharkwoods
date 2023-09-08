@@ -1,30 +1,41 @@
-const ALPHABET = 'abcdefghijklmnopqrstuvwxyz';
+const ALPHABET = "abcdefghijklmnopqrstuvwxyz";
 
 const WORDS = [
-  'strawberry',
-  'orange',
-  'apple',
-  'banana',
-  'pineapple',
-  'kiwi',
-  'peach',
-  'pecan',
-  'eggplant',
-  'durian',
-  'peanut',
-  'chocolate',
+  "strawberry",
+  "orange",
+  "apple",
+  "banana",
+  "pineapple",
+  "kiwi",
+  "peach",
+  "pecan",
+  "eggplant",
+  "durian",
+  "peanut",
+  "chocolate",
 ];
+
+const wordContainer = document.getElementById("word-container");
+const letterButtons = document.getElementById("letter-buttons");
 
 const numWrong = 0;
 
-// Loop over the letters in `word` and create divs.
-// The divs should be appended to the section with id="word-container".
-//
-// Use the following template string to create each div:
-// `<div class="letter-box ${letter}"></div>`
-//
+/**
+ * Create a div for each letter in word.
+ * Then, append each div to the wordContainer.
+ */
 const createDivsForChars = (word) => {
-  // Replace this with your code
+  let letterDivs = [];
+
+  for (const letter of word) {
+    const letterDiv = document.createElement("div");
+    letterDiv.className = `letter-box ${letter}`;
+    letterDivs.push(letterDiv);
+  }
+
+  for (const div of letterDivs) {
+    wordContainer.append(div);
+  }
 };
 
 // Loop over each letter in the alphabet and generate a button for each letter
@@ -57,7 +68,7 @@ const isLetterInWord = (letter, word) => {
   // You can change this to choose a random word from WORDS once you
   // finish this lab but we hard code it so we know what the word is
   // and can tell if things look correct for this word
-  const word = 'hello';
+  const word = "husband";
 
   createDivsForChars(word);
 
