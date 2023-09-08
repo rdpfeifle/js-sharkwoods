@@ -56,12 +56,14 @@ const disableLetterButton = (buttonEl) => {
   buttonEl.disabled = true;
 };
 
-// This is a helper function we will use in the future
-// It should return `true` if `letter` is in the word
-// For now, you should test it out to make sure it works
-
+/**
+ * This function should return `true` if `letter` is in the word
+ */
 const isLetterInWord = (letter, word) => {
-  // Replace this with your code
+  if (word.includes(letter)) {
+    return true;
+  }
+  return false;
 };
 
 // This is like if __name__ == '__main__' in Python
