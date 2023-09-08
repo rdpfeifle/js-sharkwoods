@@ -38,10 +38,14 @@ const createDivsForChars = (word) => {
   }
 };
 
-// Loop over each letter in the alphabet and generate a button for each letter
-// The buttons should be appended to the section with id="letter-buttons".
+/**
+ * Generate a button for each letter in the alphabet
+ * and append to the letterButtons section.
+ */
 const generateLetterButtons = () => {
-  // Replace this with your code
+  for (const letter of ALPHABET) {
+    letterButtons.insertAdjacentHTML("beforeend", `<button>${letter}</button>`);
+  }
 };
 
 // Set the `disabled` property of `buttonEl` to true.
