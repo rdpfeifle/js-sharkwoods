@@ -15,10 +15,19 @@ const WORDS = [
   "chocolate",
 ];
 
+const guessImages = [
+  "/static/images/guess0.png",
+  "/static/images/guess1.png",
+  "/static/images/guess2.png",
+  "/static/images/guess3.png",
+  "/static/images/guess4.png",
+  "/static/images/guess5.png",
+];
+
 const wordContainer = document.getElementById("word-container");
 const letterButtons = document.getElementById("letter-buttons");
 
-const numWrong = 0;
+let numWrong = 0;
 
 /**
  * Create a div for each letter in word.
@@ -56,30 +65,52 @@ const disableLetterButton = (buttonEl) => {
   buttonEl.disabled = true;
 };
 
-/**
- * This function should return `true` if `letter` is in the word
- */
+// Disable all buttons
+const disableAllButtons = () => {
+  for (const button of document.querySelectorAll("button")) {
+    button.disabled = true;
+  }
+};
+
+// This function should return `true` if `letter` is in the word
 const isLetterInWord = (letter, word) => word.includes(letter);
 
 // Called when `letter` is in word. Update contents of divs with `letter`.
-const handleCorrectGuess = (letter, word) => {
+const handleCorrectGuess = (letter, word, button) => {
   if (isLetterInWord(letter, word)) {
     const selectAllLetters = document.querySelectorAll(`.letter-box.${letter}`);
 
     for (const div of selectAllLetters) {
       div.innerHTML += letter;
+      disableLetterButton(button);
     }
   }
 };
+
+let currentImgIndex = 0;
 
 // Called when `letter` is not in word.
 // Increment `numWrong` and update the shark image.
 // If the shark gets the person (5 wrong guesses), disable
 // all buttons and show the "play again" message.
+const handleWrongGuess = (letter, word, button) => {
+  if (!isLetterInWord(letter, word)) {
+    const imageElement = document.querySelector("img");
 
-const handleWrongGuess = () => {
-  numWrong += 1;
-  // Replace this with your code
+    if (numWrong < 5) {
+      numWrong += 1;
+
+      // point to the next image
+      currentImgIndex = (currentImgIndex + 1) % guessImages.length;
+      imageElement.src = guessImages[currentImgIndex];
+      disableLetterButton(button);
+    }
+    if (numWrong === 5) {
+      imageElement.src = guessImages[currentImgIndex];
+      disableAllButtons();
+      document.getElementById("play-again").style.display = "block";
+    }
+  }
 };
 
 //  Reset game state. Called before restarting the game.
@@ -87,9 +118,6 @@ const resetGame = () => {
   window.location = "/sharkwords";
 };
 
-// This is like if __name__ == '__main__' in Python
-// It will be called when the file is run (because
-// we call the function on line 66)
 (function startGame() {
   /**
    * Randomly selects a word from the WORDS array by generating a random
@@ -105,8 +133,8 @@ const resetGame = () => {
   for (const button of document.querySelectorAll("button")) {
     // add an event handler to handle clicking on a letter button
     button.addEventListener("click", () => {
-      handleCorrectGuess(button.textContent, randomWord);
-      disableLetterButton(button);
+      handleCorrectGuess(button.textContent, randomWord, button);
+      handleWrongGuess(button.textContent, randomWord, button);
     });
   }
   // add an event handler to handle clicking on the Play Again button
