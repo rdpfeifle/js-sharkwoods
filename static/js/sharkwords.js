@@ -87,12 +87,15 @@ const handleCorrectGuess = (letter, word, button) => {
   }
 };
 
+/**
+ * handleWrongGuess is called when `letter` is not in word.
+ * Increment `numWrong` and update the shark image.
+ * If the shark gets the person (5 wrong guesses), disable
+ * all buttons and show the "play again" message.
+ */
+
 let currentImgIndex = 0;
 
-// Called when `letter` is not in word.
-// Increment `numWrong` and update the shark image.
-// If the shark gets the person (5 wrong guesses), disable
-// all buttons and show the "play again" message.
 const handleWrongGuess = (letter, word, button) => {
   if (!isLetterInWord(letter, word)) {
     const imageElement = document.querySelector("img");
@@ -131,7 +134,6 @@ const resetGame = () => {
   generateLetterButtons();
 
   for (const button of document.querySelectorAll("button")) {
-    // add an event handler to handle clicking on a letter button
     button.addEventListener("click", () => {
       handleCorrectGuess(button.textContent, randomWord, button);
       handleWrongGuess(button.textContent, randomWord, button);
