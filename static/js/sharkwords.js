@@ -27,6 +27,7 @@ const guessImages = [
 const wordContainer = document.getElementById("word-container");
 const letterButtons = document.getElementById("letter-buttons");
 const playAgain = document.getElementById("play-again");
+const displayWin = document.getElementById("congrats");
 
 let numWrong = 0;
 
@@ -85,6 +86,15 @@ const handleCorrectGuess = (letter, word, button) => {
       div.innerHTML += letter;
       disableLetterButton(button);
     }
+
+    // Check if all letters have been guessed
+    const guessedWord = Array.from(document.querySelectorAll(".letter-box"))
+      .map((div) => div.textContent)
+      .join("");
+
+    if (guessedWord === word) {
+      displayWin.style.display = "block";
+    }
   }
 };
 
@@ -117,7 +127,7 @@ const handleWrongGuess = (letter, word, button) => {
   }
 };
 
-//  Reset game state. Called before restarting the game.
+//  Reset game state.
 const resetGame = () => {
   window.location = "/sharkwords";
 };
@@ -130,6 +140,8 @@ const resetGame = () => {
   const randomWord = WORDS[Math.floor(Math.random() * WORDS.length)];
 
   createDivsForChars(randomWord);
+
+  console.log(randomWord);
 
   generateLetterButtons();
 
@@ -149,4 +161,7 @@ const resetGame = () => {
 
   // Event handler to handle clicking on the Play Again
   playAgain.addEventListener("click", resetGame);
+
+  // Event handler to handle clicking on the congrats
+  displayWin.addEventListener("click", resetGame);
 })();
