@@ -1,22 +1,19 @@
 """Server for JavaScript: Sharkwords."""
 
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for
 
 app = Flask(__name__)
 
 
 @app.route("/")
 def homepage():
-    return render_template("index.html")
-
-
-@app.route("/demo")
-def demo():
-    return render_template("demo.html")
+    """Redirects to the main Sharkwords game page."""
+    return redirect(url_for("sharkwords"))
 
 
 @app.route("/sharkwords")
 def sharkwords():
+    """Renders the Sharkwords game interface."""
     return render_template("sharkwords.html")
 
 
