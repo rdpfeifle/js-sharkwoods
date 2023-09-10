@@ -6,3 +6,5 @@ In Sharkwords, you're given a random word. Your goal is to find the value of tha
 
 - Front-end: JavaScript, HTML, CSS
 - Back-end: Python, Flask
+
+![Gif showing Sharkwords game](static/images/sharkwords.gif)
