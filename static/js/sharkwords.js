@@ -26,6 +26,7 @@ const guessImages = [
 
 const wordContainer = document.getElementById("word-container");
 const letterButtons = document.getElementById("letter-buttons");
+const playAgain = document.getElementById("play-again");
 
 let numWrong = 0;
 
@@ -111,7 +112,7 @@ const handleWrongGuess = (letter, word, button) => {
     if (numWrong === 5) {
       imageElement.src = guessImages[currentImgIndex];
       disableAllButtons();
-      document.getElementById("play-again").style.display = "block";
+      playAgain.style.display = "block";
     }
   }
 };
@@ -128,16 +129,24 @@ const resetGame = () => {
    */
   const randomWord = WORDS[Math.floor(Math.random() * WORDS.length)];
 
-  console.log("Random word:", randomWord);
   createDivsForChars(randomWord);
 
   generateLetterButtons();
 
+  /**
+   * Iterate through all buttons, and for each button:
+   * - Call handleCorrectGuess and handleWrongGuess with 3 arguments:
+   *   1. The button's content (represents the guessed letter).
+   *   2. The randomWord variable.
+   *   3. The button itself (to enable/disable it based on the accuracy of the guess).
+   */
   for (const button of document.querySelectorAll("button")) {
     button.addEventListener("click", () => {
       handleCorrectGuess(button.textContent, randomWord, button);
       handleWrongGuess(button.textContent, randomWord, button);
     });
   }
-  // add an event handler to handle clicking on the Play Again button
+
+  // Event handler to handle clicking on the Play Again
+  playAgain.addEventListener("click", resetGame);
 })();
