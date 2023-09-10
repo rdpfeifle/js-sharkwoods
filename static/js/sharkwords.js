@@ -141,8 +141,6 @@ const resetGame = () => {
 
   createDivsForChars(randomWord);
 
-  console.log(randomWord);
-
   generateLetterButtons();
 
   /**
