@@ -8,3 +8,22 @@ In Sharkwords, you're given a random word. Your goal is to find the value of tha
 - Back-end: Python, Flask
 
 ![Gif showing Sharkwords game](static/images/sharkwords.gif)
+
+## Instructions
+
+Create a virtual environment, activate it, and install dependencies from **requirements.txt**:
+
+```
+virtualenv env
+source env/bin/activate
+pip3 install -r requirements.txt
+
+```
+
+Then, run the server:
+
+```
+
+python3 server.py
+
+```

@@ -2,6 +2,7 @@ body {
   font-family: monospace;
   font-size: 52px;
   background-color: lightblue;
+  padding-top: 100px;
 }
 
 section {
